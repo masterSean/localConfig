@@ -1,0 +1,202 @@
+"""""""""""""""""""""""""""""""""""""""""""""""
+"   -General
+""""""""""""""""""""""""""""""""""""""""""""""
+" Set History 
+set history=700
+
+call pathogen#infect()
+execute pathogen#infect()
+
+syntax on
+
+" Enable filetype plugin
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+" Set AutoRead on
+set autoread
+
+" with map leader it's possible to do extra key combination
+" like <leader>w | saves the current file   
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+
+"Turn wilmenu on
+set wildmenu
+
+"Always show current position
+set ruler
+
+" when searching try to be smart about cases
+set smartcase
+
+" Ignore case when searching
+set ignorecase
+
+" Highlight search results
+set hlsearch
+
+" No annoying soud on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Make search act like search in modern browsers
+set incsearch
+set showcmd
+set omnifunc=csscomplete#CompleteCSS
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Files, backups and undo
+""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off
+set nobackup
+set noswapfile
+set nopaste
+set nowb
+
+
+set number
+set numberwidth=2
+
+""""""""""""""""""""""""""""""""""""""""""""
+"   Colors and Fonts
+""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+colorscheme pablo
+set background=dark
+
+set guifont=Monospace\ 10
+" Set utf8 as standard encoding and en_Us as the standart laguage
+set encoding=utf8
+
+set ffs=unix,dos,mac
+
+" Comment color to grey
+hi Comment ctermfg=DarkGrey guifg=DarkGrey
+
+set guifont=Monaco\h20
+
+let g:Powerline_symbols = 'fancy'
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""
+
+" Auto indent
+set ai
+
+" Smart indent
+set si
+
+" Wrap lines
+set wrap
+
+" 1 tab == 4 spaces
+set sts=4 sw=4 
+
+" Use space instead of tab
+set expandtab
+
+" Line break on 500 characters
+set lbr
+set tw=500
+
+" Aligns brackets 
+set showmatch
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Buffers, Windows
+"""""""""""""""""""""""""""""""""""""""""""""
+" Return to last edit position when opening files
+autocmd BufReadPost * 
+    \ if line("'\'") > 0 && line("'\'") <=("$") |
+    \ exe "normal!" g`\"" |
+    \ endif
+
+syn on
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+filetype on
+set tabpagemax=25
+set smartindent
+
+set vb t_vb=
+set nocompatible
+highlight LineNr ctermfg=grey ctermbg=white
+au BufRead,BufNewFile *.php set ft=php.html
+
+""""""""""""""""""""""""""""""""""""""""""""
+"   Others
+""""""""""""""""""""""""""""""""""""""""""""
+
+" NerdTree Toggle
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+let g:tmuxline_separators = {
+    \ 'left' : '',
+    \ 'left_alt': '>',
+    \ 'right' : '',
+    \ 'right_alt' : '<',
+    \ 'space' : ' '}
+hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Yellow
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" TMUX configuration
+"""""""""""""""""""""""""""""""""""""""""""""
+let g:tmuxline_preset = 'nightly_fox'
+let g:tmuxline_theme = 'icebert'
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Vim less Config
+""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Lightline Config
+"""""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+    \ 'colorscheme' : 'wombat', 
+    \ 'component': {
+    \   'readonly': '%{&readonly?"⭤":""}',
+    \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
+    \ },
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \}
+
+""""""""""""""""""""""""""""""""""""""""""""
+" Gundo Config
+"""""""""""""""""""""""""""""""""""""""""""
+nnoremap <F5> :GundoToggle<CR>
+let g:gundo_playback_delay=180
+
+""""""""""""""""""""""""""""""""""""""""""""
+" Emmet Config
+""""""""""""""""""""""""""""""""""""""""""""
+
+let g:user_emmet_mode='inv'
+let g:user_emmet_leader_key='<C-C>'
+let g:user_emmet_settings = {
+    \ 'php' : {
+    \    'extends' : 'html',
+    \},
+    \'xml' : {
+    \    'extends' : 'html'
+    \},
+    \'haml' : {
+    \    'extends' : 'html'
+    \},
+\}
